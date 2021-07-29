@@ -4,6 +4,7 @@ import MoveCard from "../../components/MovieCard";
 import { getGenres, getMoviesByPage } from "../../services";
 import styles from "./Homepage.module.css";
 import findGenres from "../../helpers/findGenres";
+import BackToTop from "../../components/Header";
 
 export default function HomePage() {
   const [movies, setMovies] = useState("");
@@ -45,7 +46,7 @@ export default function HomePage() {
                 title={movie.title}
                 description={movie.overview}
                 imgPath={movie.poster_path}
-                genres={findGenres(movie, genres)}
+                genres={genres ? findGenres(movie, genres) : ""}
               />
             );
           })}
