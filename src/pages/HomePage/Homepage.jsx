@@ -24,6 +24,13 @@ export default function HomePage() {
   console.log("Movies::", movies);
   console.log("Movies.results::", movies.results);
   console.log("Genres::", genres);
+  // console.log(
+  //   "findGenres::",
+  //   findGenres([{ genre_ids: [1, 2, 3] }, { genre_Ids: [2, 3, 4] }], [2, 3])
+  // );
+
+  // console.log("findGenres::", findGenres(movies.results, genres));
+
   // console.log("findGenres::", findGenres(movies.results, genres));
 
   return (
@@ -31,13 +38,14 @@ export default function HomePage() {
       <h1>HOME PAGES</h1>
       <section className={styles.container}>
         {movies &&
-          movies.results.map((movie) => {
+          movies.results.map((movie, index) => {
             return (
               <MoveCard
                 key={movie.id}
                 title={movie.title}
                 description={movie.overview}
                 imgPath={movie.poster_path}
+                genres={findGenres(movie, genres)}
               />
             );
           })}

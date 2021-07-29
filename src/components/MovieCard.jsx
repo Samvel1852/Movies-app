@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MoveCard({ title, imgPath, description }) {
+export default function MoveCard({ title, imgPath, description, genres }) {
   const classes = useStyles();
 
   return (
@@ -34,7 +34,7 @@ export default function MoveCard({ title, imgPath, description }) {
             {title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {description}
+            {genres}
           </Typography>
         </CardContent>
       </CardActionArea>
