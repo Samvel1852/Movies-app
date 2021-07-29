@@ -4,7 +4,7 @@ import MoveCard from "../../components/MovieCard";
 import { getGenres, getMoviesByPage } from "../../services";
 import styles from "./Homepage.module.css";
 import findGenres from "../../helpers/findGenres";
-import BackToTop from "../../components/Header";
+import BackToTop from "../../components/Header/Header";
 
 export default function HomePage() {
   const [movies, setMovies] = useState("");
@@ -37,6 +37,7 @@ export default function HomePage() {
   return (
     <>
       <h1>HOME PAGES</h1>
+      <BackToTop />
       <section className={styles.container}>
         {movies &&
           movies.results.map((movie, index) => {

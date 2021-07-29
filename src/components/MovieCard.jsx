@@ -13,6 +13,7 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 245,
     marginBottom: 30,
+    zIndex: 2,
   },
 });
 
