@@ -22,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
     right: theme.spacing(2),
     zIndex: 3,
   },
+  backTopFab: {
+    width: "80px",
+    height: "80px",
+  },
 }));
 
 function ScrollTop(props) {
@@ -74,8 +78,13 @@ export default function BackToTop(props) {
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
       <ScrollTop {...props}>
-        <Fab color="secondary" size="small" aria-label="scroll back to top">
-          {"Top"}
+        <Fab
+          className={classes.backTopFab}
+          color="primary"
+          size="large"
+          aria-label="scroll back to top"
+        >
+          {"Back to Top"}
         </Fab>
       </ScrollTop>
     </React.Fragment>
