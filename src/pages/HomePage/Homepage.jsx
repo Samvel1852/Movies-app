@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import MoveCard from "../../components/MovieCard";
 import { getGenres, getMoviesByPage } from "../../services";
 import styles from "./Homepage.module.css";
+import findGenres from "../../helpers/findGenres";
 
 export default function HomePage() {
   const [movies, setMovies] = useState("");
@@ -20,8 +21,10 @@ export default function HomePage() {
     });
   }, []);
 
-  console.log(movies);
-  console.log(genres);
+  console.log("Movies::", movies);
+  console.log("Movies.results::", movies.results);
+  console.log("Genres::", genres);
+  // console.log("findGenres::", findGenres(movies.results, genres));
 
   return (
     <>
