@@ -11,6 +11,11 @@ import MovieDetails from "../../components/MovieDetails";
 export default function HomePage() {
   const [movies, setMovies] = useState("");
   const [genres, setGenres] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchInput = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
   useEffect(() => {
     getMoviesByPage(1).then((res) => {
@@ -24,10 +29,12 @@ export default function HomePage() {
     });
   }, []);
 
+  console.log(searchQuery);
+
   return (
     <>
       <Router>
-        <Header />
+        <Header handleSearchInput={handleSearchInput} />
         <Switch>
           <Route exact path="/home">
             <section className={styles.container}>

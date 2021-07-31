@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Navbar() {
+export default function Navbar({ handleSearchInput }) {
   const classes = useStyles();
 
   return (
@@ -92,6 +92,7 @@ export default function Navbar() {
                 input: classes.inputInput,
               }}
               inputProps={{ "aria-label": "search" }}
+              onChange={handleSearchInput}
             />
           </div>
           <Button className={classes.logout}>Log Out</Button>
