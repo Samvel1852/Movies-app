@@ -8,37 +8,41 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { getImgUrl } from "../services";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 245,
     marginBottom: 30,
+    marginTop: 10,
     zIndex: 2,
   },
 });
 
-export default function MoveCard({ title, imgPath, description, genres }) {
+export default function MoveCard({ title, imgPath, description, genres, id }) {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Contemplative Reptile"
-          height="350"
-          image={getImgUrl(imgPath)}
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {title}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {genres}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+      <Link to={`/home/${id}`}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            alt="Contemplative Reptile"
+            height="350"
+            image={getImgUrl(imgPath)}
+            title="Contemplative Reptile"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {title}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {genres}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Link>
       <CardActions>
         <Button size="small" color="primary">
           Share

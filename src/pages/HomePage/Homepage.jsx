@@ -4,7 +4,9 @@ import MoveCard from "../../components/MovieCard";
 import { getGenres, getMoviesByPage } from "../../services";
 import styles from "./Homepage.module.css";
 import findGenres from "../../helpers/findGenres";
-import BackToTop from "../../components/Header/Header";
+import Header from "../../components/Header/Header";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import MovieDetails from "../../components/MovieDetails";
 
 export default function HomePage() {
   const [movies, setMovies] = useState("");
@@ -22,36 +24,31 @@ export default function HomePage() {
     });
   }, []);
 
-  console.log("Movies::", movies);
-  console.log("Movies.results::", movies.results);
-  console.log("Genres::", genres);
-  // console.log(
-  //   "findGenres::",
-  //   findGenres([{ genre_ids: [1, 2, 3] }, { genre_Ids: [2, 3, 4] }], [2, 3])
-  // );
-
-  // console.log("findGenres::", findGenres(movies.results, genres));
-
-  // console.log("findGenres::", findGenres(movies.results, genres));
-
   return (
     <>
-      <h1>HOME PAGES</h1>
-      <BackToTop />
-      <section className={styles.container}>
-        {movies &&
-          movies.results.map((movie, index) => {
-            return (
-              <MoveCard
-                key={movie.id}
-                title={movie.title}
-                description={movie.overview}
-                imgPath={movie.poster_path}
-                genres={genres ? findGenres(movie, genres) : ""}
-              />
-            );
-          })}
-      </section>
+      <Router>
+        <Header />
+        <Switch>
+          <Route exact path="/home">
+            <section className={styles.container}>
+              {movies &&
+                movies.results.map((movie, index) => {
+                  return (
+                    <MoveCard
+                      key={movie.id}
+                      id={movie.id}
+                      title={movie.title}
+                      description={movie.overview}
+                      imgPath={movie.poster_path}
+                      genres={genres ? findGenres(movie, genres) : ""}
+                    />
+                  );
+                })}
+            </section>
+          </Route>
+          <Route path="/home/:id" children={<MovieDetails />} />
+        </Switch>
+      </Router>
     </>
   );
 }
