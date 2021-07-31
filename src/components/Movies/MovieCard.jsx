@@ -19,17 +19,40 @@ const useStyles = makeStyles({
   },
 });
 
+let favorites = [];
+
 export default function MoveCard({ title, imgPath, description, genres, id }) {
-  const [isFavorite, setIsFavorite] = useState(false);
+  favorites = localStorage.getItem("favorites")
+    ? JSON.parse(localStorage.getItem("favorites"))
+    : [];
+
+  let isFav = favorites.some((movie) => movie.id === id);
+
+  const [isFavorite, setIsFavorite] = useState(isFav);
 
   const classes = useStyles();
 
-  const handleFavIconToggle = () => {
-    setIsFavorite((prevState) => {
-      return !prevState;
-    });
+  let movieInfo = {
+    title,
+    imgPath,
+    genres,
+    id,
+    isFavorite: !isFavorite,
   };
 
+  const handleFavIconToggle = () => {
+    setIsFavorite((prevState) => !prevState);
+    if (isFavorite) {
+      localStorage.setItem(
+        "favorites",
+        JSON.stringify(favorites.filter((movie) => movie.id !== id))
+      );
+    } else {
+      favorites.push(movieInfo);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
+  };
+  console.log({ title, imgPath, genres, id });
   return (
     <Card className={classes.root}>
       <Link to={`/home/${id}`}>
