@@ -1,7 +1,7 @@
 import { StylesProvider } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import MoveCard from "../../components/MovieCard";
-import { getGenres, getMoviesByPage } from "../../services";
+import { getGenres, getMoviesByPage, getMovieByQuery } from "../../services";
 import styles from "./Homepage.module.css";
 import findGenreName from "../../helpers/findGenreName";
 import Header from "../../components/Header/Header";
@@ -29,7 +29,13 @@ export default function HomePage() {
     });
   }, []);
 
-  console.log(searchQuery);
+  useEffect(() => {
+    if (searchQuery) {
+      getMovieByQuery(searchQuery).then((res) => setMovies(res));
+    }
+  }, [searchQuery]);
+
+  // console.log(searchQuery);
 
   return (
     <>
