@@ -55,10 +55,10 @@ export default function HomePage() {
           <Route exact path="/home">
             <Movies loading={loading} movies={movies} />
           </Route>
-          <Route>
-            <FavoritePage path="/home/favorites" />
+          <Route path="/home/favorites">
+            <FavoritePage />
           </Route>
-          <Route path="/home/:id" children={<MovieDetails />} />
+          <Route path="/home/:id" children={<MovieDetails />}></Route>
         </Switch>
       </Router>
     </>

@@ -52,7 +52,7 @@ export default function MoveCard({ title, imgPath, description, genres, id }) {
       localStorage.setItem("favorites", JSON.stringify(favorites));
     }
   };
-  console.log({ title, imgPath, genres, id });
+  // console.log({ title, imgPath, genres, id });
   return (
     <Card className={classes.root}>
       <Link to={`/home/${id}`}>
