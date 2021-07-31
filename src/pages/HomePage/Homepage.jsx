@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import MoveCard from "../../components/MovieCard";
 import { getGenres, getMoviesByPage } from "../../services";
 import styles from "./Homepage.module.css";
-import findGenres from "../../helpers/findGenres";
+import findGenreName from "../../helpers/findGenreName";
 import Header from "../../components/Header/Header";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import MovieDetails from "../../components/MovieDetails";
@@ -40,7 +40,9 @@ export default function HomePage() {
                       title={movie.title}
                       description={movie.overview}
                       imgPath={movie.poster_path}
-                      genres={genres ? findGenres(movie, genres) : ""}
+                      genres={
+                        genres ? findGenreName(genres, movie.genre_ids) : []
+                      }
                     />
                   );
                 })}

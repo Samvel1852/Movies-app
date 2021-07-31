@@ -38,7 +38,9 @@ export default function MoveCard({ title, imgPath, description, genres, id }) {
               {title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {genres}
+              {genres.map((genre, idx) => {
+                return <span key={idx}>{genre}</span>;
+              })}
             </Typography>
           </CardContent>
         </CardActionArea>

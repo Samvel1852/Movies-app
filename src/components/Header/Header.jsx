@@ -13,7 +13,6 @@ import Fab from "@material-ui/core/Fab";
 import Zoom from "@material-ui/core/Zoom";
 import { alpha } from "@material-ui/core/styles";
 import Navbar from "./Navbar";
-import InputBase from "@material-ui/core/InputBase";
 
 const useStyles = makeStyles((theme) => ({
   root: {
