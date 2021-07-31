@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -20,7 +20,15 @@ const useStyles = makeStyles({
 });
 
 export default function MoveCard({ title, imgPath, description, genres, id }) {
+  const [isFavorite, setIsFavorite] = useState(false);
+
   const classes = useStyles();
+
+  const handleFavIconToggle = () => {
+    setIsFavorite((prevState) => {
+      return !prevState;
+    });
+  };
 
   return (
     <Card className={classes.root}>
@@ -46,11 +54,8 @@ export default function MoveCard({ title, imgPath, description, genres, id }) {
         </CardActionArea>
       </Link>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
+        <Button onClick={handleFavIconToggle} size="small" color="primary">
+          {isFavorite ? "-" : "+"}
         </Button>
       </CardActions>
     </Card>

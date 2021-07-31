@@ -60,10 +60,20 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+
   logout: {
     color: "white",
     margin: "10px",
     backgroundColor: "#0049A2",
+  },
+
+  favButton: {
+    color: "white",
+    backgroundColor: "orange",
+    "&:hover": {
+      color: "white",
+      backgroundColor: "darkorange",
+    },
   },
 }));
 
@@ -74,12 +84,6 @@ export default function Navbar({ handleSearchInput }) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          ></IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             Books Are Better
           </Typography>
@@ -96,6 +100,7 @@ export default function Navbar({ handleSearchInput }) {
             />
           </div>
           <Button className={classes.logout}>Log Out</Button>
+          <Button className={classes.favButton}>Favorites</Button>
         </Toolbar>
       </AppBar>
     </div>
