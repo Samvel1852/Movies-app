@@ -12,6 +12,7 @@ export default function HomePage() {
   const [movies, setMovies] = useState("");
   const [genres, setGenres] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const handleSearchInput = (e) => {
     setSearchQuery(e.target.value);
@@ -20,6 +21,7 @@ export default function HomePage() {
   useEffect(() => {
     getMoviesByPage(1).then((res) => {
       setMovies(res);
+      setLoading(false);
     });
   }, []);
 
@@ -31,7 +33,16 @@ export default function HomePage() {
 
   useEffect(() => {
     if (searchQuery) {
-      getMovieByQuery(searchQuery).then((res) => setMovies(res));
+      setLoading(true);
+      getMovieByQuery(searchQuery).then((res) => {
+        setMovies(res);
+        setLoading(false);
+      });
+    } else {
+      getMoviesByPage(1).then((res) => {
+        setMovies(res);
+        setLoading(false);
+      });
     }
   }, [searchQuery]);
 
@@ -44,7 +55,9 @@ export default function HomePage() {
         <Switch>
           <Route exact path="/home">
             <section className={styles.container}>
-              {movies &&
+              {loading ? (
+                <p>Loading</p>
+              ) : (
                 movies.results.map((movie, index) => {
                   return (
                     <MoveCard
@@ -58,7 +71,8 @@ export default function HomePage() {
                       }
                     />
                   );
-                })}
+                })
+              )}
             </section>
           </Route>
           <Route path="/home/:id" children={<MovieDetails />} />
