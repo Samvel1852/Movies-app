@@ -19,14 +19,9 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MoveCard({
-  title,
-  imgPath,
-  description,
-  genres,
-  id,
-  favorites,
-}) {
+let favorites = [];
+
+export default function MoveCard({ title, imgPath, description, genres, id }) {
   favorites = localStorage.getItem("favorites")
     ? JSON.parse(localStorage.getItem("favorites"))
     : [];

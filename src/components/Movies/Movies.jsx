@@ -4,7 +4,7 @@ import MoveCard from "./MovieCard";
 import { useState, useEffect } from "react";
 import { getGenres } from "../../services";
 
-export default function Movies({ loading, movies, favorites }) {
+export default function Movies({ loading, movies }) {
   const [genres, setGenres] = useState("");
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function Movies({ loading, movies, favorites }) {
               description={movie.overview}
               imgPath={movie.poster_path}
               genres={genres ? findGenreName(genres, movie.genre_ids) : []}
-              favorites={favorites}
+              favorites={[]}
             />
           );
         })
