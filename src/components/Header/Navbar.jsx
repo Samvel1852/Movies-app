@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import { alpha, makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -85,7 +86,7 @@ export default function Navbar({ handleSearchInput }) {
       <AppBar position="static">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            Books Are Better
+            <Link to="/home">Books Are Better</Link>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}></div>
@@ -99,8 +100,12 @@ export default function Navbar({ handleSearchInput }) {
               onChange={handleSearchInput}
             />
           </div>
-          <Button className={classes.logout}>Log Out</Button>
-          <Button className={classes.favButton}>Favorites</Button>
+          <Link to="/">
+            <Button className={classes.logout}>Log Out</Button>
+          </Link>
+          <Link to="/home/favorites">
+            <Button className={classes.favButton}>Favorites</Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>
