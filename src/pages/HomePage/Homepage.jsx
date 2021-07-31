@@ -12,6 +12,7 @@ export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(false);
+  const [favorites, setFavorites] = useState([]);
 
   const handleSearchInput = (e) => {
     setSearchQuery(e.target.value);
@@ -53,7 +54,7 @@ export default function HomePage() {
         <Header handleSearchInput={handleSearchInput} />
         <Switch>
           <Route exact path="/home">
-            <Movies loading={loading} movies={movies} />
+            <Movies favorites={favorites} loading={loading} movies={movies} />
           </Route>
           <Route path="/home/favorites">
             <FavoritePage />
