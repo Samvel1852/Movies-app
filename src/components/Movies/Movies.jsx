@@ -1,6 +1,6 @@
 import styles from "./Movies.module.css";
-import findGenreName from "../../helpers/findGenreName";
-import MoveCard from "../../components/MovieCard";
+import findGenreName from "../../helpers/findGenres";
+import MoveCard from "./MovieCard";
 import { useState, useEffect } from "react";
 import { getGenres } from "../../services";
 

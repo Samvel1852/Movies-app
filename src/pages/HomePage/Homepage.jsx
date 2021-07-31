@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { getGenres, getMoviesByPage, getMovieByQuery } from "../../services";
 import Header from "../../components/Header/Header";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import MovieDetails from "../../components/MovieDetails";
+import MovieDetails from "../../components/Movies/MovieDetails";
 import Movies from "../../components/Movies/Movies";
 
 export default function HomePage() {
