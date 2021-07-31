@@ -13,6 +13,7 @@ export default function HomePage() {
   const [genres, setGenres] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   const handleSearchInput = (e) => {
     setSearchQuery(e.target.value);
@@ -34,10 +35,16 @@ export default function HomePage() {
   useEffect(() => {
     if (searchQuery) {
       setLoading(true);
-      getMovieByQuery(searchQuery).then((res) => {
-        setMovies(res);
-        setLoading(false);
-      });
+      getMovieByQuery(searchQuery)
+        .then((res) => {
+          setError(false);
+          setMovies(res);
+          setLoading(false);
+        })
+        .catch((e) => {
+          setError(true);
+          setLoading(false);
+        });
     } else {
       getMoviesByPage(1).then((res) => {
         setMovies(res);
@@ -56,7 +63,9 @@ export default function HomePage() {
           <Route exact path="/home">
             <section className={styles.container}>
               {loading ? (
-                <p>Loading</p>
+                <p>Loading...</p>
+              ) : !movies.results.length ? (
+                <h3>No Such Film</h3>
               ) : (
                 movies.results.map((movie, index) => {
                   return (
