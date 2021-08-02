@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import MovieDetails from "../../components/Movies/MovieDetails";
 import Movies from "../../components/Movies/Movies";
 import FavoritePage from "../FavoritePage/FavoritePage";
+import LoginPage from "../LoginPage/LoginPage";
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -79,6 +80,9 @@ export default function HomePage() {
       <Router>
         <Header handleSearchInput={handleSearchInput} />
         <Switch>
+          <Route exact path="/">
+            <LoginPage />
+          </Route>
           <Route exact path="/home">
             <Movies loading={loading} movies={movies} />
           </Route>
