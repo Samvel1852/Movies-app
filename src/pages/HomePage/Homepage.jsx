@@ -43,12 +43,12 @@ export default function HomePage() {
       window.scrollY
     );
     if (
-      Math.ceil(window.scrollY) + 200 >=
+      Math.ceil(window.scrollY) + 50 >=
       document.documentElement.scrollHeight -
         document.documentElement.clientHeight
     ) {
       setOffset((prevOffset) => prevOffset + 1);
-      window.scrollBy(-100, -100);
+      // window.scrollBy(-50, -50);
     }
   });
 
