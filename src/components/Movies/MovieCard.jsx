@@ -65,7 +65,7 @@ export default function MoveCard({ title, imgPath, description, genres, id }) {
             title="Contemplative Reptile"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography variant="h4" color="textPrimary" component="p">
               {title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">

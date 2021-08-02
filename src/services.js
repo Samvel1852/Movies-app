@@ -1,6 +1,14 @@
+import { useEffect } from "react";
+
 const API_KEY = "e8e227add2a2e5c168f7c3845928d8db";
 const API_URL = "https://api.themoviedb.org/3/";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
+
+export function getAllMovies() {
+  return fetch(
+    `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US`
+  ).then((res) => res.json());
+}
 
 export function getMoviesByPage(page) {
   return fetch(

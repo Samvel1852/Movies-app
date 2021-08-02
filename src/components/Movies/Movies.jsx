@@ -3,6 +3,7 @@ import findGenreName from "../../helpers/findGenres";
 import MoveCard from "./MovieCard";
 import { useState, useEffect } from "react";
 import { getGenres } from "../../services";
+import Loader from "../Loader/Loader";
 
 export default function Movies({ loading, movies }) {
   const [genres, setGenres] = useState("");
@@ -16,11 +17,11 @@ export default function Movies({ loading, movies }) {
   return (
     <section className={styles.container}>
       {loading ? (
-        <p>Loading...</p>
-      ) : !movies.results.length ? (
+        <Loader />
+      ) : !movies.length ? (
         <h3>No Such Film</h3>
       ) : (
-        movies.results.map((movie, index) => {
+        movies.map((movie, index) => {
           return (
             <MoveCard
               key={movie.id}
