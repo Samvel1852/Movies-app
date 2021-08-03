@@ -51,25 +51,6 @@ export default function HomePage({}) {
 
   // console.log("AnotherMovies::", movies);
 
-  window.addEventListener("scroll", function (e) {
-    // console.log(
-    //   "ScrlHeight::",
-    //   document.documentElement.scrollHeight,
-    //   "ClientHeight::",
-    //   document.documentElement.clientHeight,
-    //   "WindScrlYHeight::",
-    //   window.scrollY
-    // );
-    if (
-      Math.ceil(window.scrollY) + 50 >=
-      document.documentElement.scrollHeight -
-        document.documentElement.clientHeight
-    ) {
-      setOffset((prevOffset) => prevOffset + 1);
-      window.scrollBy(-20, -20);
-    }
-  });
-
   useEffect(() => {
     if (searchQuery) {
       setLoading(true);
@@ -103,7 +84,12 @@ export default function HomePage({}) {
           </Route>
           <Route exact path="/home">
             {/* {loggedIn ? <Redirect to="/home" /> : <PublicHomePage />} */}
-            <Movies isAuth={isAuth} loading={loading} movies={movies} />
+            <Movies
+              setOffset={setOffset}
+              isAuth={isAuth}
+              loading={loading}
+              movies={movies}
+            />
           </Route>
           <Route path="/home/favorites">
             <FavoritePage isAuth={isAuth} />
