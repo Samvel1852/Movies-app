@@ -13,7 +13,7 @@ import Movies from "../../components/Movies/Movies";
 import FavoritePage from "../FavoritePage/FavoritePage";
 import LoginPage from "../LoginPage/LoginPage";
 
-export default function HomePage() {
+export default function HomePage({ isAuth }) {
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
@@ -95,7 +95,8 @@ export default function HomePage() {
             <LoginPage />
           </Route>
           <Route exact path="/home">
-            <Movies loading={loading} movies={movies} />
+            {/* {loggedIn ? <Redirect to="/home" /> : <PublicHomePage />} */}
+            <Movies isAuth={isAuth} loading={loading} movies={movies} />
           </Route>
           <Route path="/home/favorites">
             <FavoritePage />

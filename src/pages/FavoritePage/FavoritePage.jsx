@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Redirect } from "react-router-dom";
 import MoveCard from "../../components/Movies/MovieCard";
 import styles from "./FavoritePage.module.css";
 
@@ -6,7 +7,7 @@ import styles from "./FavoritePage.module.css";
 //   JSON.parse(localStorage.getItem("favorites"))
 // );
 
-export default function FavoritePage() {
+export default function FavoritePage({ isAuth }) {
   // const [movies, setMovies] = useState(
   //   localStorage.getItem("favorites")
   //     ? JSON.parse(localStorage.getItem("favorites"))
@@ -30,7 +31,7 @@ export default function FavoritePage() {
     setFakeState(fakeState + 1);
   };
   console.log("fav page render");
-  return (
+  return isAuth ? (
     <section className={styles.container}>
       {!movies.length ? (
         <h2>You have not any favorite</h2>
@@ -50,5 +51,7 @@ export default function FavoritePage() {
         })
       )}
     </section>
+  ) : (
+    <Redirect to="/" />
   );
 }

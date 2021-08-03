@@ -4,8 +4,9 @@ import MoveCard from "./MovieCard";
 import { useState, useEffect } from "react";
 import { getGenres } from "../../services";
 import Loader from "../Loader/Loader";
+import { Redirect } from "react-router-dom";
 
-export default function Movies({ loading, movies }) {
+export default function Movies({ loading, movies, isAuth }) {
   const [genres, setGenres] = useState("");
 
   useEffect(() => {
@@ -14,7 +15,7 @@ export default function Movies({ loading, movies }) {
     });
   }, []);
 
-  return (
+  return isAuth ? (
     <section className={styles.container}>
       {loading ? (
         <Loader />
@@ -36,5 +37,7 @@ export default function Movies({ loading, movies }) {
         })
       )}
     </section>
+  ) : (
+    <Redirect to="/" />
   );
 }

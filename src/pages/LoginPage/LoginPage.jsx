@@ -63,6 +63,7 @@ export default function LoginPage() {
     onSubmit: (values) => {
       console.log(JSON.stringify(values, null, 2));
       history.push("/home");
+      localStorage.setItem("isAuth", true);
     },
   });
 
