@@ -7,18 +7,25 @@ import {
   getAllMovies,
 } from "../../services";
 import Header from "../../components/Header/Header";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
 import MovieDetails from "../../components/Movies/MovieDetails";
 import Movies from "../../components/Movies/Movies";
 import FavoritePage from "../FavoritePage/FavoritePage";
 import LoginPage from "../LoginPage/LoginPage";
 
-export default function HomePage({ isAuth }) {
+export default function HomePage({}) {
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(false);
   const [offset, setOffset] = useState(1);
+  const isAuth = localStorage.getItem("isAuth");
 
   const handleSearchInput = (e) => {
     setSearchQuery(e.target.value);
@@ -86,24 +93,26 @@ export default function HomePage({ isAuth }) {
 
   // console.log(searchQuery);
 
-  return (
+  return isAuth ? (
     <>
       <Router>
         <Header handleSearchInput={handleSearchInput} />
         <Switch>
           <Route exact path="/">
-            <LoginPage />
+            <LoginPage isAuth={isAuth} />
           </Route>
           <Route exact path="/home">
             {/* {loggedIn ? <Redirect to="/home" /> : <PublicHomePage />} */}
             <Movies isAuth={isAuth} loading={loading} movies={movies} />
           </Route>
           <Route path="/home/favorites">
-            <FavoritePage />
+            <FavoritePage isAuth={isAuth} />
           </Route>
           <Route path="/home/:id" children={<MovieDetails />}></Route>
         </Switch>
       </Router>
     </>
+  ) : (
+    <Redirect to="/" />
   );
 }

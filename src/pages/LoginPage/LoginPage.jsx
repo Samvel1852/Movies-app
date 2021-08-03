@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -49,6 +49,7 @@ const validationSchema = yup.object({
 });
 
 export default function LoginPage() {
+  // const isAuth = localStorage.getItem("isAuth");
   const classes = useStyles();
 
   let history = useHistory();
@@ -61,9 +62,10 @@ export default function LoginPage() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(JSON.stringify(values, null, 2));
-      history.push("/home");
-      localStorage.setItem("isAuth", true);
+      // console.log(JSON.stringify(values, null, 2));
+      fetch(localStorage.setItem("isAuth", true)).then(() =>
+        history.push("/home")
+      );
     },
   });
 

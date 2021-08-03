@@ -81,6 +81,10 @@ const useStyles = makeStyles((theme) => ({
 export default function Navbar({ handleSearchInput }) {
   const classes = useStyles();
 
+  function deleteIsAuth() {
+    localStorage.removeItem("isAuth");
+  }
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -101,7 +105,9 @@ export default function Navbar({ handleSearchInput }) {
             />
           </div>
           <Link to="/">
-            <Button className={classes.logout}>Log Out</Button>
+            <Button onClick={deleteIsAuth} className={classes.logout}>
+              Log Out
+            </Button>
           </Link>
           <Link to="/home/favorites">
             <Button className={classes.favButton}>Favorites</Button>

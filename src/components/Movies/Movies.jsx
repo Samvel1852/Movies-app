@@ -15,7 +15,7 @@ export default function Movies({ loading, movies, isAuth }) {
     });
   }, []);
 
-  return isAuth ? (
+  return (
     <section className={styles.container}>
       {loading ? (
         <Loader />
@@ -37,7 +37,8 @@ export default function Movies({ loading, movies, isAuth }) {
         })
       )}
     </section>
-  ) : (
-    <Redirect to="/" />
   );
+  // : (
+  //   <Redirect to="/" />
+  // );
 }

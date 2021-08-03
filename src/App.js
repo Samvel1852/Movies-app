@@ -23,7 +23,7 @@ function App() {
             path="/home/favorites"
             children={<FavoritePage isAuth={isAuth} />}
           />
-          <Route exact path="/" component={LoginPage} />
+          <Route exact path="/" children={<LoginPage isAuth={isAuth} />} />
           {/* <Route exact path="/">
             <LoginPage />
           </Route>

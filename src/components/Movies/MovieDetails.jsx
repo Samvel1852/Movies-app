@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { getMovieById } from "../../services";
+import { getImgUrl, getMovieById } from "../../services";
 import Loader from "../Loader/Loader";
 
 export default function MovieDetails() {
@@ -15,7 +15,7 @@ export default function MovieDetails() {
       setLoading(false);
     });
   }, []);
-  // console.log(movieDetails);
+  console.log(movieDetails);
 
   return (
     <>
@@ -25,6 +25,12 @@ export default function MovieDetails() {
         <div>
           <h1>{movieDetails.title}</h1>
           <p>{movieDetails.overview}</p>
+          <ul>
+            {movieDetails.genres.map((genre, idx) => (
+              <li key={idx}>{genre.name}</li>
+            ))}
+          </ul>
+          <img src={`${getImgUrl(movieDetails.backdrop_path)}`} />
         </div>
       )}
     </>
