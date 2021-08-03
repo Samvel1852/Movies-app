@@ -24,31 +24,42 @@ export default function HomePage() {
     setSearchQuery(e.target.value);
   };
 
+  // const toggleFavMovies = (id) => {
+  //   const updateMovies = [...movies];
+  //   let movieIndex = updateMovies.findIndex((movie) => movie.id === id);
+  //   updateMovies.splice(movieIndex, 1);
+  //   localStorage.setItem("favorites", JSON.stringify(updateMovies));
+  //   setMovies(updateMovies);
+  // };
+
   useEffect(() => {
     getMoviesByPage(offset).then((res) => {
-      console.log("Results::", res.results);
+      // console.log("Results::", res.results);
       setMovies([...movies, ...res.results]);
       setLoading(false);
-      console.log("AnotherMovies::", movies);
+      // console.log("AnotherMovies::", movies);
     });
-    console.log(offset);
+    // console.log(offset);
   }, [offset]);
 
-  console.log("AnotherMovies::", movies);
+  // console.log("AnotherMovies::", movies);
 
   window.addEventListener("scroll", function (e) {
-    console.log(
-      document.documentElement.scrollHeight -
-        document.documentElement.clientHeight,
-      window.scrollY
-    );
+    // console.log(
+    //   "ScrlHeight::",
+    //   document.documentElement.scrollHeight,
+    //   "ClientHeight::",
+    //   document.documentElement.clientHeight,
+    //   "WindScrlYHeight::",
+    //   window.scrollY
+    // );
     if (
       Math.ceil(window.scrollY) + 50 >=
       document.documentElement.scrollHeight -
         document.documentElement.clientHeight
     ) {
       setOffset((prevOffset) => prevOffset + 1);
-      // window.scrollBy(-50, -50);
+      window.scrollBy(-20, -20);
     }
   });
 

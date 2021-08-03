@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { getImgUrl } from "../../services";
 import { Link } from "react-router-dom";
+import { StorageMovies } from "../../pages/FavoritePage/FavoritePage";
 
 const useStyles = makeStyles({
   root: {
@@ -17,11 +18,22 @@ const useStyles = makeStyles({
     marginTop: 10,
     zIndex: 2,
   },
+
+  favBtn: {
+    padding: 0,
+  },
 });
 
 let favorites = [];
 
-export default function MoveCard({ title, imgPath, description, genres, id }) {
+export default function MoveCard({
+  title,
+  imgPath,
+  genres,
+  id,
+  // toggle,
+  fakeRender,
+}) {
   favorites = localStorage.getItem("favorites")
     ? JSON.parse(localStorage.getItem("favorites"))
     : [];
@@ -32,15 +44,14 @@ export default function MoveCard({ title, imgPath, description, genres, id }) {
 
   const classes = useStyles();
 
-  let movieInfo = {
-    title,
-    imgPath,
-    genres,
-    id,
-    isFavorite: !isFavorite,
-  };
-
   const handleFavIconToggle = () => {
+    let movieInfo = {
+      title,
+      imgPath,
+      genres,
+      id,
+      isFavorite: !isFavorite,
+    };
     setIsFavorite((prevState) => !prevState);
     if (isFavorite) {
       localStorage.setItem(
@@ -70,15 +81,26 @@ export default function MoveCard({ title, imgPath, description, genres, id }) {
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               {genres.map((genre, idx) => {
-                return <span key={idx}>{genre}</span>;
+                return (
+                  <span style={{ display: "block" }} key={idx}>
+                    {genre}
+                  </span>
+                );
               })}
             </Typography>
           </CardContent>
         </CardActionArea>
       </Link>
       <CardActions>
-        <Button onClick={handleFavIconToggle} size="small" color="primary">
-          {isFavorite ? "-" : "+"}
+        <Button
+          className={classes.favBtn}
+          onClick={handleFavIconToggle}
+          size="small"
+          color="primary"
+        >
+          <span style={{ width: "100%", height: "100%" }} onClick={fakeRender}>
+            {isFavorite ? "-" : "+"}
+          </span>
         </Button>
       </CardActions>
     </Card>
