@@ -77,12 +77,12 @@ export default function HomePage({}) {
   return isAuth ? (
     <>
       <Router>
-        <Header handleSearchInput={handleSearchInput} />
         <Switch>
           <Route exact path="/">
             <LoginPage isAuth={isAuth} />
           </Route>
           <Route exact path="/home">
+            <Header handleSearchInput={handleSearchInput} />
             {/* {loggedIn ? <Redirect to="/home" /> : <PublicHomePage />} */}
             <Movies
               setOffset={setOffset}
@@ -91,10 +91,16 @@ export default function HomePage({}) {
               movies={movies}
             />
           </Route>
+
           <Route path="/home/favorites">
+            <Header handleSearchInput={handleSearchInput} />
             <FavoritePage isAuth={isAuth} />
           </Route>
-          <Route path="/home/:id" children={<MovieDetails />}></Route>
+
+          <Route path="/home/:id">
+            <Header handleSearchInput={handleSearchInput} />
+            <MovieDetails />
+          </Route>
         </Switch>
       </Router>
     </>
