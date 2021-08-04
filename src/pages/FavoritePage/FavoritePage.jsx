@@ -4,6 +4,7 @@ import MoveCard from "../../components/Movies/MovieCard";
 import { storage } from "../../constants/storage";
 import { getLocalStorage } from "../../helpers/localStorage";
 import styles from "./FavoritePage.module.css";
+import PropTypes from "prop-types";
 
 // export const StorageMovies = React.createContext(
 //   JSON.parse(localStorage.getItem("favorites"))
@@ -57,3 +58,7 @@ export default function FavoritePage({ isAuth }) {
     <Redirect to="/" />
   );
 }
+
+FavoritePage.propTypes = {
+  isAuth: PropTypes.bool.isRequired,
+};

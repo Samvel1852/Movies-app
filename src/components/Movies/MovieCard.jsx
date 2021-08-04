@@ -15,6 +15,7 @@ import { storage } from "../../constants/storage";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import Chip from "@material-ui/core/Chip";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles({
   root: {
@@ -24,6 +25,7 @@ const useStyles = makeStyles({
     zIndex: 2,
     marginRight: 10,
     marginLeft: 10,
+    backgroundColor: "#FAFAFA",
   },
 
   favBtn: {
@@ -126,10 +128,22 @@ export default function MoveCard({
           color="primary"
         >
           <span style={{ width: "100%", height: "100%" }} onClick={fakeRender}>
-            {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            {isFavorite ? (
+              <FavoriteIcon style={{ color: "#FFA500" }} />
+            ) : (
+              <FavoriteBorderIcon />
+            )}
           </span>
         </Button>
       </CardActions>
     </Card>
   );
 }
+
+MovieCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  imgPath: PropTypes.string.isRequired,
+  genres: PropTypes.array.isRequired,
+  id: PropTypes.number.isRequired,
+  fakeRender: PropTypes.func.isRequired,
+};

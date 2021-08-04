@@ -8,6 +8,7 @@ import { alpha, makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -127,3 +128,7 @@ export default function Navbar({ handleSearchInput }) {
     </div>
   );
 }
+
+Navbar.propTypes = {
+  handleSearchInput: PropTypes.func.isRequired,
+};

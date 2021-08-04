@@ -19,7 +19,7 @@ import Movies from "../../components/Movies/Movies";
 import FavoritePage from "../FavoritePage/FavoritePage";
 import LoginPage from "../LoginPage/LoginPage";
 
-export default function HomePage({}) {
+export default function HomePage() {
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);

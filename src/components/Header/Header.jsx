@@ -89,3 +89,7 @@ export default function Header(props) {
     </React.Fragment>
   );
 }
+
+Header.propTypes = {
+  handleSearchInput: PropTypes.func.isRequired,
+};

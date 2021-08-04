@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { getGenres } from "../../services";
 import Loader from "../Loader/Loader";
 import { Redirect } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export default function Movies({ loading, movies, isAuth, setOffset }) {
   const [genres, setGenres] = useState("");
@@ -67,3 +68,9 @@ export default function Movies({ loading, movies, isAuth, setOffset }) {
   //   <Redirect to="/" />
   // );
 }
+
+Movies.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  movies: PropTypes.array.isRequired,
+  setOffset: PropTypes.func.isRequired,
+};

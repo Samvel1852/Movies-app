@@ -22,7 +22,7 @@ import {
 } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { setLocalStorage } from "../../helpers/localStorage";
+import { getLocalStorage, setLocalStorage } from "../../helpers/localStorage";
 import { storage } from "../../constants/storage";
 
 const useStyles = makeStyles((theme) => ({
@@ -56,7 +56,7 @@ const validationSchema = yup.object({
     .required("Password is required"),
 });
 
-export default function LoginPage({ isAuth }) {
+export default function LoginPage() {
   // const isAuth = localStorage.getItem("isAuth");
   const classes = useStyles();
 
@@ -77,7 +77,7 @@ export default function LoginPage({ isAuth }) {
     },
   });
 
-  return isAuth ? (
+  return getLocalStorage(storage.isAuth) ? (
     <Redirect to="/home" />
   ) : (
     <Container component="main" maxWidth="xs">
