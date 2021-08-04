@@ -24,12 +24,6 @@ function App() {
             children={<FavoritePage isAuth={isAuth} />}
           />
           <Route exact path="/" children={<LoginPage isAuth={isAuth} />} />
-          {/* <Route exact path="/">
-            <LoginPage />
-          </Route>
-          <Route path="/home">
-            <HomePage />
-          </Route> */}
         </Switch>
       </Router>
     </>

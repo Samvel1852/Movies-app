@@ -76,33 +76,26 @@ export default function HomePage({}) {
 
   return isAuth ? (
     <>
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <LoginPage isAuth={isAuth} />
-          </Route>
-          <Route exact path="/home">
-            <Header handleSearchInput={handleSearchInput} />
-            {/* {loggedIn ? <Redirect to="/home" /> : <PublicHomePage />} */}
-            <Movies
-              setOffset={setOffset}
-              isAuth={isAuth}
-              loading={loading}
-              movies={movies}
-            />
-          </Route>
+      <Header handleSearchInput={handleSearchInput} />
+      <Switch>
+        <Route exact path="/home">
+          {/* {loggedIn ? <Redirect to="/home" /> : <PublicHomePage />} */}
+          <Movies
+            setOffset={setOffset}
+            isAuth={isAuth}
+            loading={loading}
+            movies={movies}
+          />
+        </Route>
 
-          <Route path="/home/favorites">
-            <Header handleSearchInput={handleSearchInput} />
-            <FavoritePage isAuth={isAuth} />
-          </Route>
+        <Route path="/home/favorites">
+          <FavoritePage isAuth={isAuth} />
+        </Route>
 
-          <Route path="/home/:id">
-            <Header handleSearchInput={handleSearchInput} />
-            <MovieDetails />
-          </Route>
-        </Switch>
-      </Router>
+        <Route path="/home/:id">
+          <MovieDetails />
+        </Route>
+      </Switch>
     </>
   ) : (
     <Redirect to="/" />
