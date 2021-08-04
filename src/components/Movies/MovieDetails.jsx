@@ -28,7 +28,13 @@ export default function MovieDetails() {
       ) : (
         <div style={{ backgroundColor: "lightgrey" }} className="container">
           <h1>{movieDetails.title}</h1>
-          <div style={{ display: "flex", justifyContent: "space-around" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              flexWrap: "wrap",
+            }}
+          >
             <img
               style={{
                 marginRight: "50px",
