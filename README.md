@@ -24,4 +24,4 @@ You have to log in first to see the application.
 
 All the data saved in localStorage to let you keep data after refresh or after close browser.
 
-Hope You will enjoy [this app](https://movies-app-5ten0s3w1-samvel1852.vercel.app/).
+Hope You will enjoy [this app](https://movies-app-gamma-hazel.vercel.app/home).
