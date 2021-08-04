@@ -33,6 +33,10 @@ const useStyles = makeStyles({
   genreName: {
     margin: 2,
   },
+
+  movieTitle: {
+    textAlign: "center",
+  },
 });
 
 let favorites = [];
