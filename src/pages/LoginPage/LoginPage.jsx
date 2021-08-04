@@ -13,7 +13,13 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { setLocalStorage } from "../../helpers/localStorage";
@@ -50,7 +56,7 @@ const validationSchema = yup.object({
     .required("Password is required"),
 });
 
-export default function LoginPage() {
+export default function LoginPage({ isAuth }) {
   // const isAuth = localStorage.getItem("isAuth");
   const classes = useStyles();
 
@@ -71,7 +77,9 @@ export default function LoginPage() {
     },
   });
 
-  return (
+  return isAuth ? (
+    <Redirect to="/home" />
+  ) : (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
