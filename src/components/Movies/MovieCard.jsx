@@ -12,6 +12,9 @@ import { Link } from "react-router-dom";
 import { StorageMovies } from "../../pages/FavoritePage/FavoritePage";
 import { getLocalStorage, setLocalStorage } from "../../helpers/localStorage";
 import { storage } from "../../constants/storage";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import Chip from "@material-ui/core/Chip";
 
 const useStyles = makeStyles({
   root: {
@@ -19,10 +22,16 @@ const useStyles = makeStyles({
     marginBottom: 30,
     marginTop: 10,
     zIndex: 2,
+    marginRight: 10,
+    marginLeft: 10,
   },
 
   favBtn: {
     padding: 0,
+  },
+
+  genreName: {
+    margin: 2,
   },
 });
 
@@ -78,18 +87,30 @@ export default function MoveCard({
             title="Contemplative Reptile"
           />
           <CardContent>
-            <Typography variant="h4" color="textPrimary" component="p">
+            <Typography
+              className={classes.movieTitle}
+              variant="h6"
+              color="textPrimary"
+              component="p"
+            >
               {title}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {genres.map((genre, idx) => {
-                return (
-                  <span style={{ display: "block" }} key={idx}>
-                    {genre}
-                  </span>
-                );
-              })}
-            </Typography>
+            <div style={{ width: "100%" }}>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {genres.map((genre, idx) => {
+                  return (
+                    <Chip
+                      className={classes.genreName}
+                      key={idx}
+                      variant="outlined"
+                      color="primary"
+                      label={genre}
+                      size="small"
+                    />
+                  );
+                })}
+              </Typography>
+            </div>
           </CardContent>
         </CardActionArea>
       </Link>
@@ -101,7 +122,7 @@ export default function MoveCard({
           color="primary"
         >
           <span style={{ width: "100%", height: "100%" }} onClick={fakeRender}>
-            {isFavorite ? "-" : "+"}
+            {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
           </span>
         </Button>
       </CardActions>

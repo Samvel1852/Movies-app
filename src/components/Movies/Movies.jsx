@@ -9,26 +9,26 @@ import { Redirect } from "react-router-dom";
 export default function Movies({ loading, movies, isAuth, setOffset }) {
   const [genres, setGenres] = useState("");
 
-  useEffect(() => {
-    const lazyLoad = function (e) {
-      // console.log(
-      //   "ScrlHeight::",
-      //   document.documentElement.scrollHeight,
-      //   "ClientHeight::",
-      //   document.documentElement.clientHeight,
-      //   "WindScrlYHeight::",
-      //   window.scrollY
-      // );
-      if (
-        Math.ceil(window.scrollY) + 50 >=
-        document.documentElement.scrollHeight -
-          document.documentElement.clientHeight
-      ) {
-        setOffset((prevOffset) => prevOffset + 1);
-        window.scrollBy(-20, -20);
-      }
-    };
+  const lazyLoad = function () {
+    // console.log(
+    //   "ScrlHeight::",
+    //   document.documentElement.scrollHeight,
+    //   "ClientHeight::",
+    //   document.documentElement.clientHeight,
+    //   "WindScrlYHeight::",
+    //   window.scrollY
+    // );
+    if (
+      Math.ceil(window.scrollY) + 50 >=
+      document.documentElement.scrollHeight -
+        document.documentElement.clientHeight
+    ) {
+      setOffset((prevOffset) => prevOffset + 1);
+      window.scrollBy(-20, -20);
+    }
+  };
 
+  useEffect(() => {
     window.addEventListener("scroll", lazyLoad);
 
     return () => window.removeEventListener("scroll", lazyLoad);

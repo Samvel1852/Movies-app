@@ -7,6 +7,7 @@ import InputBase from "@material-ui/core/InputBase";
 import { alpha, makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import HomeIcon from "@material-ui/icons/Home";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -76,6 +77,13 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "darkorange",
     },
   },
+
+  homeIcon: {
+    transition: "0.4s",
+    "&:hover": {
+      color: "#FFA500",
+    },
+  },
 }));
 
 export default function Navbar({ handleSearchInput }) {
@@ -90,7 +98,9 @@ export default function Navbar({ handleSearchInput }) {
       <AppBar position="static">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link to="/home">Books Are Better</Link>
+            <Link to="/home">
+              <HomeIcon className={classes.homeIcon} fontSize="large" />
+            </Link>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}></div>
