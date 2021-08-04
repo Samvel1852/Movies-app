@@ -32,8 +32,6 @@ export default function MovieDetails() {
             <img
               style={{
                 marginRight: "50px",
-                marginLeft: "50px",
-                height: "400px",
               }}
               src={`${getImgUrl(movieDetails.backdrop_path)}`}
             />
