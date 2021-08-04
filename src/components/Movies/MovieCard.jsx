@@ -140,7 +140,7 @@ export default function MoveCard({
   );
 }
 
-MovieCard.propTypes = {
+MoveCard.propTypes = {
   title: PropTypes.string.isRequired,
   imgPath: PropTypes.string.isRequired,
   genres: PropTypes.array.isRequired,
