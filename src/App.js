@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import FavoritePage from "./pages/FavoritePage/FavoritePage";
 
-const isAuth = localStorage.getItem("isAuth");
+// const isAuth = localStorage.getItem("isAuth");
 
 function App() {
   const isAuth = localStorage.getItem("isAuth");

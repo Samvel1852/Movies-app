@@ -10,6 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import { getImgUrl } from "../../services";
 import { Link } from "react-router-dom";
 import { StorageMovies } from "../../pages/FavoritePage/FavoritePage";
+import { getLocalStorage, setLocalStorage } from "../../helpers/localStorage";
+import { storage } from "../../constants/storage";
 
 const useStyles = makeStyles({
   root: {
@@ -34,8 +36,8 @@ export default function MoveCard({
   // toggle,
   fakeRender,
 }) {
-  favorites = localStorage.getItem("favorites")
-    ? JSON.parse(localStorage.getItem("favorites"))
+  favorites = getLocalStorage(storage.favorites)
+    ? getLocalStorage(storage.favorites)
     : [];
 
   let isFav = favorites.some((movie) => movie.id === id);
@@ -54,13 +56,13 @@ export default function MoveCard({
     };
     setIsFavorite((prevState) => !prevState);
     if (isFavorite) {
-      localStorage.setItem(
-        "favorites",
-        JSON.stringify(favorites.filter((movie) => movie.id !== id))
+      setLocalStorage(
+        storage.favorites,
+        favorites.filter((movie) => movie.id !== id)
       );
     } else {
       favorites.push(movieInfo);
-      localStorage.setItem("favorites", JSON.stringify(favorites));
+      setLocalStorage(storage.favorites, favorites);
     }
   };
   // console.log({ title, imgPath, genres, id });

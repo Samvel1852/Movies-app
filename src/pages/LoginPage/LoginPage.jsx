@@ -16,6 +16,8 @@ import Container from "@material-ui/core/Container";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { setLocalStorage } from "../../helpers/localStorage";
+import { storage } from "../../constants/storage";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -63,7 +65,7 @@ export default function LoginPage() {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       // console.log(JSON.stringify(values, null, 2));
-      fetch(localStorage.setItem("isAuth", true)).then(() =>
+      fetch(setLocalStorage(storage.isAuth, true)).then(() =>
         history.push("/home")
       );
     },

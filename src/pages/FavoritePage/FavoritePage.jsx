@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import MoveCard from "../../components/Movies/MovieCard";
+import { storage } from "../../constants/storage";
+import { getLocalStorage } from "../../helpers/localStorage";
 import styles from "./FavoritePage.module.css";
 
 // export const StorageMovies = React.createContext(
@@ -13,8 +15,8 @@ export default function FavoritePage({ isAuth }) {
   //     ? JSON.parse(localStorage.getItem("favorites"))
   //     : []
   // );
-  const movies = localStorage.getItem("favorites")
-    ? JSON.parse(localStorage.getItem("favorites"))
+  const movies = getLocalStorage(storage.favorites)
+    ? getLocalStorage(storage.favorites)
     : [];
 
   const [fakeState, setFakeState] = useState(1);
