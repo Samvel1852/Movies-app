@@ -24,7 +24,9 @@ export default function MovieDetails() {
   return (
     <>
       {loading ? (
-        <Loader />
+        <div className="loadContainer">
+          <Loader />
+        </div>
       ) : (
         <div style={{ backgroundColor: "lightgrey" }} className="container">
           <h1>{movieDetails.title}</h1>

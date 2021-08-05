@@ -2,3 +2,6 @@
   width: 100%;
   background-image: url(`${getImgUrl(movieDetails.backdrop_path)`);
 } */
+
+.loadContainer {
+}

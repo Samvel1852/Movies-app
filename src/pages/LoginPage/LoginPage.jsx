@@ -71,9 +71,10 @@ export default function LoginPage() {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       // console.log(JSON.stringify(values, null, 2));
-      fetch(setLocalStorage(storage.isAuth, true)).then(() =>
-        history.push("/home")
-      );
+      // fetch(setLocalStorage(storage.isAuth, true)).then(() =>
+      setLocalStorage(storage.isAuth, true);
+      history.push("/home");
+      // );
     },
   });
 
