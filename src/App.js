@@ -8,6 +8,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import FavoritePage from "./pages/FavoritePage/FavoritePage";
+import SignUp from "./pages/SignUp/SignUpPage";
 
 // const isAuth = localStorage.getItem("isAuth");
 
@@ -24,6 +25,7 @@ function App() {
             children={<FavoritePage isAuth={isAuth} />}
           />
           <Route exact path="/" children={<LoginPage isAuth={isAuth} />} />
+          <Route path="/signup" component={SignUp} />
         </Switch>
       </Router>
     </>

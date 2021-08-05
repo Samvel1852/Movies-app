@@ -146,9 +146,9 @@ export default function LoginPage() {
               {/* </Link> */}
             </Grid>
             <Grid item>
-              {/* <Link href="#" variant="body2"> */}
-              {"Don't have an account? Sign Up"}
-              {/* </Link> */}
+              <Link variant="body2" to="/signup">
+                Don't have an account? Sign Up
+              </Link>
             </Grid>
           </Grid>
         </form>

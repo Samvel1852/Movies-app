@@ -28,7 +28,18 @@ export default function MovieDetails() {
           <Loader />
         </div>
       ) : (
-        <div style={{ backgroundColor: "lightgrey" }} className="container">
+        <div
+          style={{
+            backgroundColor: "lightgrey",
+            backgroundImage:
+              "url(" + `${getImgUrl(movieDetails.backdrop_path)}` + ")",
+            backgroundPosition: "fixed",
+            backgroundSize: "cover",
+            // opacity: "0.7",
+            textAlign: "center",
+          }}
+          className="container"
+        >
           <h1>{movieDetails.title}</h1>
           <div
             style={{
@@ -41,7 +52,7 @@ export default function MovieDetails() {
               style={{
                 marginRight: "50px",
               }}
-              src={`${getImgUrl(movieDetails.backdrop_path)}`}
+              src={`${getImgUrl(movieDetails.poster_path)}`}
             />
 
             <div>
@@ -59,19 +70,19 @@ export default function MovieDetails() {
                 />
               ))}
             </div>
-          </div>
 
-          <p>
-            Visit to learn more
-            <a
-              style={{ color: "red" }}
-              target="_blank"
-              style={{ color: "black" }}
-              href={movieDetails.homepage}
-            >
-              {` ${movieDetails.homepage.slice(8)}`}
-            </a>
-          </p>
+            <p>
+              Visit to learn more
+              <a
+                style={{ color: "red" }}
+                target="_blank"
+                style={{ color: "black" }}
+                href={movieDetails.homepage}
+              >
+                {` ${movieDetails.homepage.slice(8)}`}
+              </a>
+            </p>
+          </div>
         </div>
       )}
     </>
