@@ -72,9 +72,13 @@ export default function LoginPage() {
     onSubmit: (values) => {
       // console.log(JSON.stringify(values, null, 2));
       // fetch(setLocalStorage(storage.isAuth, true)).then(() =>
+      console.log(values);
       if (
         getLocalStorage(storage.users) &&
-        getLocalStorage(storage.users).email === values.email
+        getLocalStorage(storage.users).some(
+          (user) =>
+            user.email === values.email && user.password === values.password
+        )
       ) {
         const users = getLocalStorage(storage.users);
         setLocalStorage(storage.isAuth, true);
