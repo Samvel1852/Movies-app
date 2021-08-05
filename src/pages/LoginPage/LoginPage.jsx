@@ -72,8 +72,17 @@ export default function LoginPage() {
     onSubmit: (values) => {
       // console.log(JSON.stringify(values, null, 2));
       // fetch(setLocalStorage(storage.isAuth, true)).then(() =>
-      setLocalStorage(storage.isAuth, true);
-      history.push("/home");
+      if (
+        getLocalStorage(storage.users) &&
+        getLocalStorage(storage.users).email === values.email
+      ) {
+        const users = getLocalStorage(storage.users);
+        setLocalStorage(storage.isAuth, true);
+        history.push("/home");
+      } else {
+        setLocalStorage(storage.isAuth, false);
+      }
+
       // );
     },
   });
