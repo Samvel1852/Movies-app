@@ -4,4 +4,13 @@
 } */
 
 .loadContainer {
+  width: 100%;
+  background-image: url("../../assets/images/loading.jpg");
+  background-position: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }

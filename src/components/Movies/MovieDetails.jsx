@@ -5,7 +5,7 @@ import Loader from "../Loader/Loader";
 import Chip from "@material-ui/core/Chip";
 import styles from "./MovieDetails.module.css";
 import { fixRequestBody } from "http-proxy-middleware";
-// import { coverage } from "browserslist";
+// import { coverage } from "browserslist"
 
 export default function MovieDetails() {
   const [movieDetails, setMovieDetails] = useState([]);
@@ -24,7 +24,7 @@ export default function MovieDetails() {
   return (
     <>
       {loading ? (
-        <div className="loadContainer">
+        <div className={styles.loadContainer}>
           <Loader />
         </div>
       ) : (
