@@ -85,6 +85,7 @@ export default function LoginPage() {
         history.push("/home");
       } else {
         setLocalStorage(storage.isAuth, false);
+        alert("You have no account");
       }
 
       // );
