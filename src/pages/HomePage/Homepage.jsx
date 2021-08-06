@@ -30,8 +30,9 @@ export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
   const [offset, setOffset] = useState(1);
-  const isAuth = getLocalStorage(storage.isAuth);
   const [favCount, setFavCount] = useState(initialFavCount);
+
+  const isAuth = getLocalStorage(storage.isAuth);
 
   const handleSearchInput = (e) => {
     setSearchQuery(e.target.value);

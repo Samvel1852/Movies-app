@@ -25,6 +25,9 @@ import * as yup from "yup";
 import { getLocalStorage, setLocalStorage } from "../../helpers/localStorage";
 import { storage } from "../../constants/storage";
 import { Routes } from "../../constants/routes";
+import { validationLogin } from "../../helpers/formValidation";
+import { isUserValid } from "../../helpers/utils";
+import SignInError from "../../components/Errors/SignInError";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -58,8 +61,10 @@ const validationSchema = yup.object({
 });
 
 export default function LoginPage() {
-  const classes = useStyles();
+  const [errorSignUp, setErrorSignUp] = useState(false);
+  const [errorPassEmail, setErrorPassEmail] = useState(false);
 
+  const classes = useStyles();
   let history = useHistory();
 
   const formik = useFormik({
@@ -67,22 +72,20 @@ export default function LoginPage() {
       email: "",
       password: "",
     },
-    validationSchema: validationSchema,
+    validationSchema: validationLogin,
     onSubmit: (values) => {
-      console.log(values);
-      if (
-        getLocalStorage(storage.users) &&
-        getLocalStorage(storage.users).some(
-          (user) =>
-            user.email === values.email && user.password === values.password
-        )
-      ) {
-        const users = getLocalStorage(storage.users);
-        setLocalStorage(storage.isAuth, true);
-        history.push(Routes.homePage.url);
+      const users = getLocalStorage(storage.users);
+      if (users) {
+        setErrorSignUp(!errorSignUp);
+        if (isUserValid(users, values)) {
+          setLocalStorage(storage.isAuth, true);
+          history.push(`${Routes.homePage.url}`);
+          setErrorPassEmail(!errorPassEmail);
+        } else {
+          setErrorPassEmail(!errorPassEmail);
+        }
       } else {
-        setLocalStorage(storage.isAuth, false);
-        alert("Wrong email or password");
+        setErrorSignUp(!errorSignUp);
       }
     },
   });
@@ -105,11 +108,11 @@ export default function LoginPage() {
           <TextField
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             id="email"
             label="Email Address"
             name="email"
+            autoComplete="email"
             autoFocus
             value={formik.values.email}
             onChange={formik.handleChange}
@@ -119,21 +122,23 @@ export default function LoginPage() {
           <TextField
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             name="password"
             label="Password"
             type="password"
             id="password"
+            autoComplete="current-password"
             value={formik.values.password}
             onChange={formik.handleChange}
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+
+          {errorPassEmail ? (
+            <SignInError message={"Wrong password or Email"} />
+          ) : errorSignUp ? (
+            <SignInError message={"Please Sign Up"} />
+          ) : null}
 
           <Button
             type="submit"
@@ -142,16 +147,9 @@ export default function LoginPage() {
             color="primary"
             className={classes.submit}
           >
-            {/* <Link to="/home"> */}
             Sign In
-            {/* </Link> */}
           </Button>
           <Grid container>
-            <Grid item xs>
-              {/* <Link href="#" variant="body2"> */}
-              Forgot password?
-              {/* </Link> */}
-            </Grid>
             <Grid item>
               <Link variant="body2" to="/signup">
                 Don't have an account? Sign Up

@@ -9,12 +9,13 @@ import {
 } from "react-router-dom";
 import FavoritePage from "./pages/FavoritePage/FavoritePage";
 import SignUp from "./pages/SignUp/SignUpPage";
+import { getLocalStorage } from "./helpers/localStorage";
+import { storage } from "./constants/storage";
 
 // const isAuth = localStorage.getItem("isAuth");
 
 function App() {
-  const isAuth = localStorage.getItem("isAuth");
-  console.log(isAuth);
+  const isAuth = getLocalStorage(storage.isAuth);
   return (
     <>
       <Router>

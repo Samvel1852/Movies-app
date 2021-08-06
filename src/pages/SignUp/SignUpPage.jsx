@@ -14,9 +14,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, Redirect } from "react-router-dom";
 import { getLocalStorage, setLocalStorage } from "../../helpers/localStorage";
 import { storage } from "../../constants/storage";
+import { Routes } from "../../constants/routes";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -83,7 +84,9 @@ export default function SignUp() {
     },
   });
 
-  return (
+  return getLocalStorage(storage.isAuth) ? (
+    <Redirect to={Routes.homePage.url} />
+  ) : (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
