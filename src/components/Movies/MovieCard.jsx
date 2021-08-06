@@ -16,6 +16,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import Chip from "@material-ui/core/Chip";
 import PropTypes from "prop-types";
+import { Routes } from "../../constants/routes";
 
 const useStyles = makeStyles({
   root: {
@@ -80,10 +81,9 @@ export default function MoveCard({
       setLocalStorage(storage.favorites, favorites);
     }
   };
-  // console.log({ title, imgPath, genres, id });
   return (
     <Card className={classes.root}>
-      <Link to={`/home/${id}`}>
+      <Link to={`${Routes.homePage.url}${id}`}>
         <CardActionArea>
           <CardMedia
             component="img"

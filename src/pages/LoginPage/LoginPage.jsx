@@ -24,6 +24,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { getLocalStorage, setLocalStorage } from "../../helpers/localStorage";
 import { storage } from "../../constants/storage";
+import { Routes } from "../../constants/routes";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -57,11 +58,9 @@ const validationSchema = yup.object({
 });
 
 export default function LoginPage() {
-  // const isAuth = localStorage.getItem("isAuth");
   const classes = useStyles();
 
   let history = useHistory();
-  // console.log("history::", history);
 
   const formik = useFormik({
     initialValues: {
@@ -70,8 +69,6 @@ export default function LoginPage() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      // console.log(JSON.stringify(values, null, 2));
-      // fetch(setLocalStorage(storage.isAuth, true)).then(() =>
       console.log(values);
       if (
         getLocalStorage(storage.users) &&
@@ -82,18 +79,16 @@ export default function LoginPage() {
       ) {
         const users = getLocalStorage(storage.users);
         setLocalStorage(storage.isAuth, true);
-        history.push("/home");
+        history.push(Routes.homePage.url);
       } else {
         setLocalStorage(storage.isAuth, false);
         alert("Wrong email or password");
       }
-
-      // );
     },
   });
 
   return getLocalStorage(storage.isAuth) ? (
-    <Redirect to="/home" />
+    <Redirect to={Routes.homePage.url} />
   ) : (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -115,7 +110,6 @@ export default function LoginPage() {
             id="email"
             label="Email Address"
             name="email"
-            // autoComplete="email"
             autoFocus
             value={formik.values.email}
             onChange={formik.handleChange}
@@ -131,7 +125,6 @@ export default function LoginPage() {
             label="Password"
             type="password"
             id="password"
-            // autoComplete="current-password"
             value={formik.values.password}
             onChange={formik.handleChange}
             error={formik.touched.password && Boolean(formik.errors.password)}

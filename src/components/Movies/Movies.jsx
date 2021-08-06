@@ -11,14 +11,6 @@ export default function Movies({ loading, movies, isAuth, setOffset }) {
   const [genres, setGenres] = useState("");
 
   const lazyLoad = function () {
-    // console.log(
-    //   "ScrlHeight::",
-    //   document.documentElement.scrollHeight,
-    //   "ClientHeight::",
-    //   document.documentElement.clientHeight,
-    //   "WindScrlYHeight::",
-    //   window.scrollY
-    // );
     if (
       Math.ceil(window.scrollY) + 50 >=
       document.documentElement.scrollHeight -
@@ -64,9 +56,6 @@ export default function Movies({ loading, movies, isAuth, setOffset }) {
       )}
     </section>
   );
-  // : (
-  //   <Redirect to="/" />
-  // );
 }
 
 Movies.propTypes = {

@@ -9,6 +9,9 @@ import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import PropTypes from "prop-types";
+import { removeFromLocalStorage } from "../../helpers/localStorage";
+import { storage } from "../../constants/storage";
+import { Routes } from "../../constants/routes";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -91,7 +94,7 @@ export default function Navbar({ handleSearchInput }) {
   const classes = useStyles();
 
   function deleteIsAuth() {
-    localStorage.removeItem("isAuth");
+    removeFromLocalStorage(storage.isAuth);
   }
 
   return (
@@ -99,7 +102,7 @@ export default function Navbar({ handleSearchInput }) {
       <AppBar position="static">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link to="/home">
+            <Link to={Routes.homePage.url}>
               <HomeIcon className={classes.homeIcon} fontSize="large" />
             </Link>
           </Typography>
@@ -115,12 +118,12 @@ export default function Navbar({ handleSearchInput }) {
               onChange={handleSearchInput}
             />
           </div>
-          <Link to="/">
+          <Link to={Routes.loginPage.url}>
             <Button onClick={deleteIsAuth} className={classes.logout}>
               Log Out
             </Button>
           </Link>
-          <Link to="/home/favorites">
+          <Link to={Routes.favoritePage.url}>
             <Button className={classes.favButton}>Favorites</Button>
           </Link>
         </Toolbar>

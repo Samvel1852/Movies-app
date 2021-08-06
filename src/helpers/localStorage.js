@@ -13,3 +13,11 @@ export function setLocalStorage(key, value) {
     console.log(e.message);
   }
 }
+
+export function removeFromLocalStorage(key) {
+  try {
+    localStorage.removeItem(key);
+  } catch (e) {
+    console.log(e.message);
+  }
+}

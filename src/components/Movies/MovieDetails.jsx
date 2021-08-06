@@ -19,7 +19,6 @@ export default function MovieDetails() {
       setLoading(false);
     });
   }, []);
-  console.log(movieDetails);
 
   return (
     <>

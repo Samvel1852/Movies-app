@@ -5,35 +5,23 @@ import { storage } from "../../constants/storage";
 import { getLocalStorage } from "../../helpers/localStorage";
 import styles from "./FavoritePage.module.css";
 import PropTypes from "prop-types";
+import { Routes } from "../../constants/routes";
 
 // export const StorageMovies = React.createContext(
 //   JSON.parse(localStorage.getItem("favorites"))
 // );
 
 export default function FavoritePage({ isAuth }) {
-  // const [movies, setMovies] = useState(
-  //   localStorage.getItem("favorites")
-  //     ? JSON.parse(localStorage.getItem("favorites"))
-  //     : []
-  // );
   const movies = getLocalStorage(storage.favorites)
     ? getLocalStorage(storage.favorites)
     : [];
 
   const [fakeState, setFakeState] = useState(1);
 
-  // const toggleFavMovies = (id) => {
-  //   const updateMovies = [...movies];
-  //   let movieIndex = updateMovies.findIndex((movie) => movie.id === id);
-  //   updateMovies.splice(movieIndex, 1);
-  //   localStorage.setItem("favorites", JSON.stringify(updateMovies));
-  //   setMovies(updateMovies);
-  // };
-
   const fakeRender = () => {
     setFakeState(fakeState + 1);
   };
-  console.log("fav page render");
+  // console.log("fav page render");
   return isAuth ? (
     <section className={styles.container}>
       {!movies.length ? (
@@ -42,7 +30,6 @@ export default function FavoritePage({ isAuth }) {
         movies.map((movie) => {
           return (
             <MoveCard
-              // toggle={toggleFavMovies}
               fakeRender={fakeRender}
               key={movie.id}
               title={movie.title}
@@ -55,7 +42,7 @@ export default function FavoritePage({ isAuth }) {
       )}
     </section>
   ) : (
-    <Redirect to="/" />
+    <Redirect to={Routes.loginPage.url} />
   );
 }
 
