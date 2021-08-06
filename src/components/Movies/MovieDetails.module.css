@@ -15,3 +15,99 @@
   align-items: center;
   height: 100vh;
 }
+
+.page {
+  position: relative;
+  font-weight: 800;
+  font-size: medium;
+  height: 100vh;
+}
+.backgroundLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("../../assets//images/loading.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+.backgroundDetails {
+  position: relative;
+  opacity: 0.6;
+}
+.backgroundPath {
+  height: 100%;
+}
+.container {
+  max-width: 96% !important;
+  margin-left: 2%;
+  margin-top: 20px;
+  top: 72px;
+  left: 0;
+  border: 1px solid rgb(255, 255, 255);
+}
+.poster {
+  width: 25% !important;
+  height: 330px;
+  position: absolute;
+  top: 40px;
+  left: 30px;
+  border: 1px solid rgb(109, 93, 93);
+}
+.date {
+  width: 12% !important;
+  height: 70px;
+  position: absolute;
+  top: 400px;
+  left: 100px;
+}
+.info {
+  width: 12% !important;
+  height: 70px;
+  position: absolute;
+  top: 400px;
+}
+.title {
+  width: 65% !important;
+  height: 50px;
+  position: absolute;
+  top: 40px;
+  right: 30px;
+  letter-spacing: 10px;
+  font-size: x-large;
+}
+
+.overview {
+  width: 65% !important;
+  height: 250px;
+  position: absolute;
+  top: 120px;
+  right: 30px;
+  border: 1px dotted rgb(255, 255, 255);
+  letter-spacing: 2px;
+  padding: 10px 0;
+}
+.rating {
+  width: 21% !important;
+  height: 70px;
+  position: absolute;
+  top: 400px;
+  right: 400px;
+}
+.status {
+  width: 34% !important;
+  height: 70px;
+  position: absolute;
+  top: 400px;
+  right: 30px;
+}
+.runtime {
+  width: 21% !important;
+  height: 70px;
+  position: absolute;
+  top: 400px;
+  right: 315px;
+}
+.icon {
+  color: red;
+}
