@@ -11,17 +11,11 @@ import { Routes } from "../../constants/routes";
 //   JSON.parse(localStorage.getItem("favorites"))
 // );
 
-export default function FavoritePage({ isAuth }) {
+export default function FavoritePage({ isAuth, setFavCount }) {
   const movies = getLocalStorage(storage.favorites)
     ? getLocalStorage(storage.favorites)
     : [];
 
-  const [fakeState, setFakeState] = useState(1);
-
-  const fakeRender = () => {
-    setFakeState(fakeState + 1);
-  };
-  // console.log("fav page render");
   return isAuth ? (
     <section className={styles.container}>
       {!movies.length ? (
@@ -30,7 +24,7 @@ export default function FavoritePage({ isAuth }) {
         movies.map((movie) => {
           return (
             <MoveCard
-              fakeRender={fakeRender}
+              setFavCount={setFavCount}
               key={movie.id}
               title={movie.title}
               imgPath={movie.imgPath}

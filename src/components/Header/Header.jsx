@@ -72,7 +72,10 @@ export default function Header(props) {
     <React.Fragment>
       <CssBaseline />
       <AppBar>
-        <Navbar handleSearchInput={props.handleSearchInput} />
+        <Navbar
+          favCount={props.favCount}
+          handleSearchInput={props.handleSearchInput}
+        />
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
       <ScrollTop {...props}>

@@ -7,7 +7,13 @@ import Loader from "../Loader/Loader";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 
-export default function Movies({ loading, movies, isAuth, setOffset }) {
+export default function Movies({
+  loading,
+  movies,
+  isAuth,
+  setOffset,
+  setFavCount,
+}) {
   const [genres, setGenres] = useState("");
 
   const lazyLoad = function () {
@@ -50,6 +56,7 @@ export default function Movies({ loading, movies, isAuth, setOffset }) {
               imgPath={movie.poster_path}
               genres={genres ? findGenreName(genres, movie.genre_ids) : []}
               favorites={[]}
+              setFavCount={setFavCount}
             />
           );
         })

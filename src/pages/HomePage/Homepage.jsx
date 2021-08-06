@@ -21,12 +21,17 @@ import { Routes } from "../../constants/routes";
 import { getLocalStorage } from "../../helpers/localStorage";
 import { storage } from "../../constants/storage";
 
+const initialFavCount = getLocalStorage(storage.favorites)
+  ? getLocalStorage(storage.favorites).length
+  : 0;
+
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
   const [offset, setOffset] = useState(1);
   const isAuth = getLocalStorage(storage.isAuth);
+  const [favCount, setFavCount] = useState(initialFavCount);
 
   const handleSearchInput = (e) => {
     setSearchQuery(e.target.value);
@@ -57,10 +62,10 @@ export default function HomePage() {
       });
     }
   }, [searchQuery]);
-  console.log("homeRendered");
+  // console.log("homeRendered");
   return isAuth ? (
     <>
-      <Header handleSearchInput={handleSearchInput} />
+      <Header handleSearchInput={handleSearchInput} favCount={favCount} />
       <Switch>
         <Route exact path={Routes.homePage.url}>
           {/* {loggedIn ? <Redirect to="/home" /> : <PublicHomePage />} */}
@@ -69,11 +74,12 @@ export default function HomePage() {
             isAuth={isAuth}
             loading={loading}
             movies={movies}
+            setFavCount={setFavCount}
           />
         </Route>
 
         <Route path="/home/favorites">
-          <FavoritePage isAuth={isAuth} />
+          <FavoritePage setFavCount={setFavCount} isAuth={isAuth} />
         </Route>
 
         <Route path="/home/:id">

@@ -5,7 +5,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import { alpha, makeStyles } from "@material-ui/core/styles";
-import { Button } from "@material-ui/core";
+import { Badge, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import PropTypes from "prop-types";
@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Navbar({ handleSearchInput }) {
+export default function Navbar({ handleSearchInput, favCount }) {
   const classes = useStyles();
 
   function deleteIsAuth() {
@@ -125,7 +125,9 @@ export default function Navbar({ handleSearchInput }) {
             </Button>
           </Link>
           <Link to={Routes.favoritePage.url}>
-            <Button className={classes.favButton}>Favorites</Button>
+            <Badge color="secondary" badgeContent={favCount} max={10}>
+              <Button className={classes.favButton}>Favorite</Button>
+            </Badge>
           </Link>
         </Toolbar>
       </AppBar>

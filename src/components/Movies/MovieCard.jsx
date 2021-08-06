@@ -49,7 +49,7 @@ export default function MoveCard({
   imgPath,
   genres,
   id,
-  // toggle,
+  setFavCount,
   fakeRender,
 }) {
   favorites = getLocalStorage(storage.favorites)
@@ -63,22 +63,25 @@ export default function MoveCard({
   const classes = useStyles();
 
   const handleFavIconToggle = () => {
-    let movieInfo = {
+    setIsFavorite(!isFavorite);
+    const movieInfo = {
       title,
       imgPath,
       genres,
       id,
       isFavorite: !isFavorite,
     };
-    setIsFavorite((prevState) => !prevState);
+
     if (isFavorite) {
       setLocalStorage(
         storage.favorites,
         favorites.filter((movie) => movie.id !== id)
       );
+      setFavCount((prevFavCount) => prevFavCount - 1);
     } else {
       favorites.push(movieInfo);
       setLocalStorage(storage.favorites, favorites);
+      setFavCount((prevFavCount) => prevFavCount + 1);
     }
   };
   return (
@@ -123,17 +126,15 @@ export default function MoveCard({
       <CardActions>
         <Button
           className={classes.favBtn}
-          onClick={handleFavIconToggle}
           size="small"
           color="primary"
+          onClick={handleFavIconToggle}
         >
-          <span style={{ width: "100%", height: "100%" }} onClick={fakeRender}>
-            {isFavorite ? (
-              <FavoriteIcon style={{ color: "#FFA500" }} />
-            ) : (
-              <FavoriteBorderIcon />
-            )}
-          </span>
+          {isFavorite ? (
+            <FavoriteIcon style={{ color: "orange" }} />
+          ) : (
+            <FavoriteBorderIcon />
+          )}
         </Button>
       </CardActions>
     </Card>
