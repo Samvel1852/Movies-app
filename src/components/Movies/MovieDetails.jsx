@@ -27,83 +27,67 @@ export default function MovieDetails() {
           <Loader />
         </div>
       ) : (
-        <div
-          // style={{
-          //   backgroundColor: "lightgrey",
-          //   // backgroundImage:
-          //   //   "url(" + `${getImgUrl(movieDetails.backdrop_path)}` + ")",
-          //   // backgroundPosition: "fixed",
-          //   // backgroundSize: "cover",
-          //   // opacity: "0.7",
-          //   textAlign: "center",
-          // }}
-          className={styles.container}
-        >
-          <div>
-            <div
+        <div className={styles.container}>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <img
               style={{
-                display: "flex",
-                justifyContent: "space-around",
-                flexWrap: "wrap",
+                marginRight: "50px",
+                height: "100vh",
               }}
-            >
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <img
-                  style={{
-                    marginRight: "50px",
-                    height: "100vh",
-                  }}
-                  src={`${getImgUrl(movieDetails.poster_path)}`}
-                />
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                  <h1>{movieDetails.title}</h1>
-                  <h3>
-                    {movieDetails.production_countries.map((countryDetails) => (
-                      <p>{countryDetails.name}</p>
-                    ))}
-                  </h3>
-                  <p>{movieDetails.overview}</p>
-                  <div>
-                    {movieDetails.genres.map((genre, idx) => (
-                      // <li key={idx}>{genre.name}</li>
-                      <Chip
-                        // className={classes.genreName}
-                        style={{ margin: "2px" }}
-                        key={idx}
-                        variant="outlined"
-                        color="primary"
-                        label={genre.name}
-                        size="small"
-                      />
-                    ))}
-                  </div>
-                  <div>
-                    <p>Produced by</p>
-                    {movieDetails.production_companies.map((company) => {
-                      return (
-                        <img
-                          style={{ margin: "10px", height: "80px" }}
-                          src={`${getCompanyImgUrl(company.logo_path)}`}
-                        />
-                      );
-                    })}
-                  </div>
-                </div>
+              src={`${getImgUrl(movieDetails.poster_path)}`}
+            />
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <h1>{movieDetails.title}</h1>
+              <h3>
+                {movieDetails.production_countries.map((countryDetails) => (
+                  <p>{countryDetails.name}</p>
+                ))}
+              </h3>
+              <p>{movieDetails.overview}</p>
+              <div style={{ width: "100%", display: "flex", flexWrap: "wrap" }}>
+                {movieDetails.genres.map((genre, idx) => (
+                  // <li key={idx}>{genre.name}</li>
+                  <Chip
+                    // className={classes.genreName}
+                    style={{ margin: "2px" }}
+                    key={idx}
+                    variant="outlined"
+                    color="primary"
+                    label={genre.name}
+                    size="small"
+                  />
+                ))}
               </div>
-
-              <p>
-                Visit to learn more
-                <a
-                  style={{ color: "red" }}
-                  target="_blank"
-                  style={{ color: "black" }}
-                  href={movieDetails.homepage}
-                >
-                  {` ${movieDetails.homepage.slice(8)}`}
-                </a>
-              </p>
+              <p style={{ width: "100%", fontSize: "30px" }}>Produced by</p>
+              <div style={{ width: "100%", display: "flex", flexWrap: "wrap" }}>
+                {movieDetails.production_companies.map((company) => {
+                  return (
+                    <img
+                      style={{ margin: "10px", height: "80px" }}
+                      src={`${getCompanyImgUrl(company.logo_path)}`}
+                    />
+                  );
+                })}
+              </div>
             </div>
           </div>
+          <p style={{ width: "100%", display: "block", fontSize: "20px" }}>
+            Visit to learn more
+            <a
+              style={{ color: "blue", textDecoration: "underline" }}
+              target="_blank"
+              // style={{ color: "black" }}
+              href={movieDetails.homepage}
+            >
+              {` ${movieDetails.homepage.slice(8)}`}
+            </a>
+          </p>
         </div>
       )}
     </>
