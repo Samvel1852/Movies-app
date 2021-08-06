@@ -3,6 +3,7 @@ import axios from "axios";
 const API_KEY = "e8e227add2a2e5c168f7c3845928d8db";
 const API_URL = "https://api.themoviedb.org/3/";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
+const COMP_IMG_URL = "https://image.tmdb.org/t/p/w200";
 
 export function getAllMovies() {
   return axios
@@ -32,6 +33,10 @@ export function getGenres() {
 
 export function getImgUrl(path) {
   return `${IMG_URL}${path}`;
+}
+
+export function getCompanyImgUrl(path) {
+  return `${COMP_IMG_URL}${path}`;
 }
 
 export function getMovieByQuery(query) {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { getImgUrl, getMovieById } from "../../services";
+import { getCompanyImgUrl, getImgUrl, getMovieById } from "../../services";
 import Loader from "../Loader/Loader";
 import Chip from "@material-ui/core/Chip";
 import styles from "./MovieDetails.module.css";
@@ -39,13 +39,7 @@ export default function MovieDetails() {
           // }}
           className={styles.container}
         >
-          <div style={{ opacity: "1" }}>
-            <h1>{movieDetails.title}</h1>
-            <h3>
-              {movieDetails.production_countries.map((countryDetails) => (
-                <p>{countryDetails.name}</p>
-              ))}
-            </h3>
+          <div>
             <div
               style={{
                 display: "flex",
@@ -53,14 +47,25 @@ export default function MovieDetails() {
                 flexWrap: "wrap",
               }}
             >
-              <img
-                style={{
-                  marginRight: "50px",
-                }}
-                src={`${getImgUrl(movieDetails.poster_path)}`}
-              />
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <img
+                  style={{
+                    marginRight: "50px",
+                    height: "300px",
+                  }}
+                  src={`${getImgUrl(movieDetails.poster_path)}`}
+                />
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <h1>{movieDetails.title}</h1>
+                  <h3>
+                    {movieDetails.production_countries.map((countryDetails) => (
+                      <p>{countryDetails.name}</p>
+                    ))}
+                  </h3>
+                  <p>{movieDetails.overview}</p>
+                </div>
+              </div>
               <div>
-                <p>{movieDetails.overview}</p>
                 {movieDetails.genres.map((genre, idx) => (
                   // <li key={idx}>{genre.name}</li>
                   <Chip
@@ -73,6 +78,17 @@ export default function MovieDetails() {
                     size="small"
                   />
                 ))}
+              </div>
+              <div>
+                <p>Produced by</p>
+                {movieDetails.production_companies.map((company) => {
+                  return (
+                    <img
+                      style={{ margin: "10px" }}
+                      src={`${getCompanyImgUrl(company.logo_path)}`}
+                    />
+                  );
+                })}
               </div>
 
               <p>
