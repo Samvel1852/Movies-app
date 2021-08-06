@@ -1,7 +1,8 @@
-/* .container {
+.container {
   width: 100%;
-  background-image: url(`${getImgUrl(movieDetails.backdrop_path)`);
-} */
+  text-align: center;
+  background-color: antiquewhite;
+}
 
 .loadContainer {
   width: 100%;

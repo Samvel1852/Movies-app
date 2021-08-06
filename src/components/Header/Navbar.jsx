@@ -84,6 +84,7 @@ const useStyles = makeStyles((theme) => ({
 
   homeIcon: {
     transition: "0.4s",
+    color: "white",
     "&:hover": {
       color: "#FFA500",
     },

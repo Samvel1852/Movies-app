@@ -57,7 +57,7 @@ export default function HomePage() {
       });
     }
   }, [searchQuery]);
-
+  console.log("homeRendered");
   return isAuth ? (
     <>
       <Header handleSearchInput={handleSearchInput} />
