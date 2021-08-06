@@ -51,7 +51,7 @@ export default function MovieDetails() {
                 <img
                   style={{
                     marginRight: "50px",
-                    height: "300px",
+                    height: "100vh",
                   }}
                   src={`${getImgUrl(movieDetails.poster_path)}`}
                 />
@@ -63,32 +63,32 @@ export default function MovieDetails() {
                     ))}
                   </h3>
                   <p>{movieDetails.overview}</p>
+                  <div>
+                    {movieDetails.genres.map((genre, idx) => (
+                      // <li key={idx}>{genre.name}</li>
+                      <Chip
+                        // className={classes.genreName}
+                        style={{ margin: "2px" }}
+                        key={idx}
+                        variant="outlined"
+                        color="primary"
+                        label={genre.name}
+                        size="small"
+                      />
+                    ))}
+                  </div>
+                  <div>
+                    <p>Produced by</p>
+                    {movieDetails.production_companies.map((company) => {
+                      return (
+                        <img
+                          style={{ margin: "10px", height: "80px" }}
+                          src={`${getCompanyImgUrl(company.logo_path)}`}
+                        />
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-              <div>
-                {movieDetails.genres.map((genre, idx) => (
-                  // <li key={idx}>{genre.name}</li>
-                  <Chip
-                    // className={classes.genreName}
-                    style={{ margin: "2px" }}
-                    key={idx}
-                    variant="outlined"
-                    color="primary"
-                    label={genre.name}
-                    size="small"
-                  />
-                ))}
-              </div>
-              <div>
-                <p>Produced by</p>
-                {movieDetails.production_companies.map((company) => {
-                  return (
-                    <img
-                      style={{ margin: "10px" }}
-                      src={`${getCompanyImgUrl(company.logo_path)}`}
-                    />
-                  );
-                })}
               </div>
 
               <p>
