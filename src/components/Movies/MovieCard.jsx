@@ -21,7 +21,7 @@ import { Routes } from "../../constants/routes";
 const useStyles = makeStyles({
   root: {
     maxWidth: 245,
-    marginBottom: 30,
+    marginBottom: 70,
     marginTop: 10,
     zIndex: 2,
     marginRight: 10,

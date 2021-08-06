@@ -2,8 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  /* background-image: url(../../assets/images/movies_background.jpg);
-  background-position: fixed;
-  background-size: cover; */
-  background-color: black;
+  background-image: url("../../assets/images/movies_background.jpg");
+  background-attachment: fixed;
+  background-size: cover;
 }
